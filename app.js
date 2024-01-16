@@ -3,6 +3,18 @@ let numeroLimite = 10;
 let numeroSecreto = gerarNumeroAleatorio();
 let tentativas = 1;
 
+document.addEventListener("DOMContentLoaded", function () {
+    exibirMensagemInicial();
+  
+    document
+      .getElementById("numeroInput")
+      .addEventListener("keydown", function (event) {
+        if (event.keyCode === 13) {
+          verificarChute(); 
+        }
+      });
+  });
+
 function exibirTextoNaTela(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
@@ -17,7 +29,7 @@ function exibirMensagemInicial() {
 exibirMensagemInicial();
 
 function verificarChute() {
-    let chute = document.querySelector('input').value;
+    let chute = document.querySelector("#numeroInput").value;
     
     if (chute == numeroSecreto) {
         exibirTextoNaTela('h1', 'Acertou!');
@@ -53,7 +65,7 @@ function gerarNumeroAleatorio() {
 }
 
 function limparCampo() {
-    chute = document.querySelector('input');
+    chute = document.querySelector("#numeroInput");
     chute.value = '';
 }
 
